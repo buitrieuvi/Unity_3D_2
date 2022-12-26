@@ -74,19 +74,12 @@ public class SC_NPCEnemy : MonoBehaviour, IEntity
         if (npcHP <= 0)
         {
             MonoObjectPool.Instance.Spawn("Finish");
-            
-            //Destroy the NPC
+            SC_GameCtrl.Instance.TangDiem(10);
             GameObject npcDead = Instantiate(npcDeadPrefab, transform.position, transform.rotation);
-            //Slightly bounce the npc dead prefab up
             npcDead.GetComponent<Rigidbody>().velocity = (-(playerTransform.position - transform.position).normalized * 8) + new Vector3(0, 5, 0);
             Destroy(npcDead, 10);
             es.EnemyEliminated(this);
             Destroy(gameObject);
         }
-    }
-
-    public void ApplyHeal(float points)
-    {
-        
     }
 }

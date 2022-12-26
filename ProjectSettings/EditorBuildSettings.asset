@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SimpleFPS/UI/SlimUI/Tech Menu/Scenes/Menu.unity
+    path: Assets/SimpleFPS/Scripts/UI/SlimUI/Tech Menu/Scenes/Menu.unity
     guid: bebc050756972234eb97d414dab7df66
   - enabled: 1
     path: Assets/SimpleFPS/Scenes/LV1.unity
     guid: b668d4f0dd1eccb48b57dbd2e74d20a9
+  - enabled: 1
+    path: Assets/SimpleFPS/Scenes/LV2.unity
+    guid: e1de8d399af86f946ba625644a16a0be
   m_configObjects: {}

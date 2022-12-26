@@ -10,6 +10,7 @@ public class SC_CharacterController : MonoBehaviour
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
+    public SC_UI m_ui;
 
     
 
@@ -49,16 +50,20 @@ public class SC_CharacterController : MonoBehaviour
         moveDirection.y -= gravity * Time.deltaTime;
 
         // Move the controller
+        
         characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
         if (canMove)
         {
-            rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
-            rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
-            rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotation.x, 0, 0);
-            transform.eulerAngles = new Vector2(0, rotation.y);
+                rotation.y += Input.GetAxis("Mouse X") * lookSpeed;
+                rotation.x += -Input.GetAxis("Mouse Y") * lookSpeed;
+                rotation.x = Mathf.Clamp(rotation.x, -lookXLimit, lookXLimit);
+                playerCamera.transform.localRotation = Quaternion.Euler(rotation.x, 0, 0);
+                transform.eulerAngles = new Vector2(0, rotation.y);
         }
     }
+
+
+
 }

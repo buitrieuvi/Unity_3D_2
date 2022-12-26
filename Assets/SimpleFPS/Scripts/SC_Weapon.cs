@@ -25,6 +25,7 @@ public class SC_Weapon : MonoBehaviour
     AudioSource audioSource;
     public int fullBullet;
     public int fullBulletDefault;
+    public SC_UI m_ui;
 
     // Start is called before the first frame update
     void Start()
@@ -42,15 +43,16 @@ public class SC_Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && singleFire)
+      
+        if (Input.GetMouseButtonDown(0) && singleFire )
         {
             Fire();
         }
-        if (Input.GetMouseButton(0) && !singleFire)
+        if (Input.GetMouseButton(0) && !singleFire )
         {
             Fire();
         }
-        if (Input.GetKeyDown(KeyCode.R) && canFire)
+        if (Input.GetKeyDown(KeyCode.R) && canFire )
         {
             if (bulletsPerMagazine == 0 && bulletsPerMagazineDefault == 0)
             {
@@ -60,6 +62,7 @@ public class SC_Weapon : MonoBehaviour
             else
                 StartCoroutine(Reload());
         }
+        
     }
 
     void Fire()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7346544693485297434}
   - component: {fileID: 3935928187913757699}
   - component: {fileID: 864864750993479454}
+  - component: {fileID: 4911245439215649746}
   m_Layer: 0
   m_Name: FirstAidKit_Green
   m_TagString: Untagged
@@ -111,3 +112,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+--- !u!54 &4911245439215649746
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9063772929710025670}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

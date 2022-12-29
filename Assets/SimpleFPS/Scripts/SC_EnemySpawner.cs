@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SC_EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab;
     public SC_DamageReceiver player;
     public Texture crosshairTexture;
     public float spawnInterval = 2;
@@ -11,6 +11,7 @@ public class SC_EnemySpawner : MonoBehaviour
     public Transform[] spawnPoints;
     float nextSpawnTime = 0;
     public int waveNumber = 1;
+    public int maxWaveNumber;
     public bool waitingForWave = true;
     public float newWaveTimer = 2;
     public int enemiesToEliminate;
@@ -22,6 +23,7 @@ public class SC_EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         //Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -32,11 +34,20 @@ public class SC_EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (waveNumber == 7) 
+        if (waveNumber == maxWaveNumber) 
         {
-            //PlayerPrefs.SetInt("Score", SC_GameCtrl.Instance.Score);
-            //PlayerPrefs.SetInt("Time", SC_GameCtrl.Instance.Time);
-            SceneManager.LoadScene(scene + 1);
+            SC_GameCtrl.Instance.DiemLV();
+            SC_UI.Instance.panel_over.SetActive(true);
+            
+            if (Input.GetKeyDown(KeyCode.Space)) 
+            {
+                SceneManager.LoadScene(scene + 1);
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(0);
+            }
+            Time.timeScale = 0;
         }
         if (waitingForWave)
         {
@@ -60,8 +71,8 @@ public class SC_EnemySpawner : MonoBehaviour
                 if(totalEnemiesSpawned < enemiesToEliminate)
                 {
                     Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length - 1)];
-
-                    GameObject enemy = Instantiate(enemyPrefab, randomPoint.position, Quaternion.identity);
+                    int randomNPC = Random.Range(0, enemyPrefab.Length);
+                    GameObject enemy = Instantiate(enemyPrefab[randomNPC], randomPoint.position, Quaternion.identity);
                     SC_NPCEnemy npc = enemy.GetComponent<SC_NPCEnemy>();
                     npc.playerTransform = player.transform;
                     npc.es = this;
@@ -86,7 +97,7 @@ public class SC_EnemySpawner : MonoBehaviour
     {
         if(player.playerHP <= 0)
         {
-            GUI.Box(new Rect(Screen.width / 2 - 85, Screen.height / 2 - 20, 170, 40), "Game Over\n(Press 'Space' to Restart)");
+            
         }
         else
         {
@@ -105,4 +116,6 @@ public class SC_EnemySpawner : MonoBehaviour
             waveNumber++;
         }
     }
+
+    
 }

@@ -925,7 +925,7 @@ GameObject:
   - component: {fileID: 2272617417317875321}
   m_Layer: 0
   m_Name: Zombie_run
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1044,11 +1044,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c18324a51d3054e8fc592a0503ddff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 2
-  movementSpeed: 6
-  npcHP: 100
-  npcDamage: 5
-  attackRate: 0.5
+  score: 10
+  attackDistance: 1
+  movementSpeed: 5
+  npcHP: 500
+  npcDamage: 10
+  attackRate: 1
   firePoint: {fileID: 6286339407678642645}
   npcDeadPrefab: {fileID: 2437681085847996665, guid: 759e5a33ccaeb7e47bef52d934ed6e0c, type: 3}
   playerTransform: {fileID: 0}

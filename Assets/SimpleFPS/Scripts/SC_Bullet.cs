@@ -40,12 +40,16 @@ public class SC_Bullet : MonoBehaviour
                     {
                         //Apply damage to NPC
                         npc.ApplyDamage(damagePoints);
+                        
                     }
+                    
+                        
                 }
 
                 newPos = hit.point; //Adjust new position
                 StartCoroutine(DestroyBullet());
             }
+                
 
             currentTime += Time.deltaTime;
             yield return new WaitForFixedUpdate();

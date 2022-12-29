@@ -26,5 +26,13 @@ public class SC_GameCtrl : MonoSingleton<SC_GameCtrl>
         return Score += soDiemTang;
     }
 
+    public int DiemLV()
+    {
+        int kq = Score;
+        PlayerPrefs.SetInt("score",kq);
+        return kq; 
+    }
+
+
 
 }

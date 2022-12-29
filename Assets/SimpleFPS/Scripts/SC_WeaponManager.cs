@@ -5,6 +5,7 @@ public class SC_WeaponManager : MonoBehaviour
     public Camera playerCamera;
     public SC_Weapon primaryWeapon;
     public SC_Weapon secondaryWeapon;
+    //public SC_Weapon superWeapon;
 
     [HideInInspector]
     public SC_Weapon selectedWeapon;
@@ -15,9 +16,11 @@ public class SC_WeaponManager : MonoBehaviour
         //At the start we enable the primary weapon and disable the secondary
         primaryWeapon.ActivateWeapon(true);
         secondaryWeapon.ActivateWeapon(false);
+        //superWeapon.ActivateWeapon(false);
         selectedWeapon = primaryWeapon;
         primaryWeapon.manager = this;
         secondaryWeapon.manager = this;
+        //superWeapon.manager = this;
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class SC_WeaponManager : MonoBehaviour
         {
             primaryWeapon.ActivateWeapon(false);
             secondaryWeapon.ActivateWeapon(true);
+            //superWeapon.ActivateWeapon(false);
             selectedWeapon = secondaryWeapon;
         }
 
@@ -36,7 +40,16 @@ public class SC_WeaponManager : MonoBehaviour
         {
             primaryWeapon.ActivateWeapon(true);
             secondaryWeapon.ActivateWeapon(false);
+            //superWeapon.ActivateWeapon(false);
             selectedWeapon = primaryWeapon;
         }
+        //Select super weapon when pressing 3
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    primaryWeapon.ActivateWeapon(false);
+        //    secondaryWeapon.ActivateWeapon(false);
+        //    superWeapon.ActivateWeapon(true);
+        //    selectedWeapon = superWeapon;
+        //}
     }
 }

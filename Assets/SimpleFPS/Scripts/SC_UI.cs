@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 
-public class SC_UI : MonoBehaviour
+public class SC_UI : MonoSingleton<SC_UI>
 {
 
     public TMP_Text bl;
@@ -17,13 +17,15 @@ public class SC_UI : MonoBehaviour
     public GameObject panel_paule;
     public GameObject panel_dame;
     public GameObject panel_over;
+    public GameObject panel_gameover;
+    public TMP_Text total;
     public TMP_Text time;
     public TMP_Text wave;
     public TMP_Text Score;
     public TMP_Text zomebies;
     public static bool pp = false;
     public bool pause = false;
-    public UIManagerTech ui;
+
 
     IEnumerator count() 
     {
@@ -44,9 +46,9 @@ public class SC_UI : MonoBehaviour
         if (!pp)
             StartCoroutine(count());
 
-        bl.text = player.weaponManager.selectedWeapon.bulletsPerMagazine.ToString() +"/"+player.weaponManager.selectedWeapon.bulletsPerMagazineDefault.ToString();
+        bl.text = player.weaponManager.selectedWeapon.bulletsPerMagazine.ToString() + "/" + player.weaponManager.selectedWeapon.bulletsPerMagazineDefault.ToString();
         hp.text = player.playerHP.ToString() + " HP";
-        
+
         zomebies.text = "Zombies: " + (enemy.enemiesToEliminate - enemy.enemiesEliminated).ToString();
 
         if (enemy.waitingForWave) 
@@ -54,7 +56,7 @@ public class SC_UI : MonoBehaviour
             wave.text = "Wave: " + enemy.waveNumber.ToString();
             
         }
-
+        
         // tab
         if (Input.GetAxis("Tab") != 0) 
         {
@@ -64,10 +66,8 @@ public class SC_UI : MonoBehaviour
         else
             panel_tab.SetActive(false);
 
-        
-
         // esc
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && player.playerHP > 0)
         {
             if (!pause)
             {
@@ -91,18 +91,18 @@ public class SC_UI : MonoBehaviour
 
         if (player.playerHP <= 20)
             panel_dame.SetActive(true);
-        else
+        else 
             panel_dame.SetActive(false);
 
-        //if ()
-        //{
-        //    panel_over.SetActive(true);
-
-        //}
-
+        if (player.playerHP <= 0) 
+        {
+            Time.timeScale = 0;
+            panel_gameover.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
+        total.text = "Total: " + PlayerPrefs.GetInt("score").ToString();
     }
-
-
-
-
 }

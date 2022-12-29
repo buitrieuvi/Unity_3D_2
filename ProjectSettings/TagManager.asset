@@ -7,6 +7,10 @@ TagManager:
   - SF_Door
   - 1kill
   - Heal
+  - Zombie
+  - Super
+  - Dragon
+  - NPC
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class SC_NPCEnemy : MonoBehaviour, IEntity
 {
+    public int score = 10;
     public float attackDistance = 3f;
     public float movementSpeed = 4f;
     public float npcHP = 100;
@@ -37,10 +38,10 @@ public class SC_NPCEnemy : MonoBehaviour, IEntity
             GetComponent<Rigidbody>().isKinematic = true;
         }
     }
-
     // Update is called once per frame
     void Update()
     {
+
         if (agent.remainingDistance - attackDistance < 0.01f)
         {
             if(Time.time > nextAttackTime)
@@ -57,6 +58,7 @@ public class SC_NPCEnemy : MonoBehaviour, IEntity
 
                         IEntity player = hit.transform.GetComponent<IEntity>();
                         player.ApplyDamage(npcDamage);
+                        
                     }
                 }
             }
@@ -74,7 +76,7 @@ public class SC_NPCEnemy : MonoBehaviour, IEntity
         if (npcHP <= 0)
         {
             MonoObjectPool.Instance.Spawn("Finish");
-            SC_GameCtrl.Instance.TangDiem(10);
+            SC_GameCtrl.Instance.TangDiem(score);
             GameObject npcDead = Instantiate(npcDeadPrefab, transform.position, transform.rotation);
             npcDead.GetComponent<Rigidbody>().velocity = (-(playerTransform.position - transform.position).normalized * 8) + new Vector3(0, 5, 0);
             Destroy(npcDead, 10);

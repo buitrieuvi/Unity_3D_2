@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class SC_Hp : MonoBehaviour
 {
-    public SC_DamageReceiver player;
+    SC_DamageReceiver player;
+
+    void Start()
+    {
+        player = FindObjectOfType<SC_DamageReceiver>();
+    }
     void OnTriggerEnter(Collider other)
     {
 

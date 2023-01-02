@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
@@ -9,15 +10,10 @@ using UnityEngine.SceneManagement;
 public class end : MonoBehaviour
 {
 
-    public GameObject panel_end;
-
-    // Start is called before the first frame update
     void Start()
     {
-        if (true) 
-        {
-            StartCoroutine(n());
-        }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;   
     }
 
     // Update is called once per frame
@@ -25,13 +21,8 @@ public class end : MonoBehaviour
     {
         
     }
-
-    IEnumerator n() 
+    public void back()
     {
-        panel_end.SetActive(true);
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
-
-
+        SceneManager.LoadScene(0);        
     }
 }
